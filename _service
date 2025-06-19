@@ -1,13 +1,13 @@
 <services>
-  <service name="tar_scm" mode="enabled">
-    <param name="url">https://github.com/example/linux-madness-fortune.git</param>
+  <service name="tar_scm">
+    <param name="url">https://github.com/kLeZ/linux-madness-fortune.git</param>
     <param name="scm">git</param>
     <param name="version">1.0</param>
-    <param name="filename">linux_madness</param>
+    <param name="filename">linux-madness-fortune</param>
   </service>
-  <service name="recompress" mode="enabled">
-    <param name="file">linux_madness.tar</param>
+  <service name="recompress">
+    <param name="file">linux-madness-fortune.tar</param>
     <param name="compression">gz</param>
   </service>
-  <service name="set_version" mode="disabled"/>
+  <service name="set_version"/>
 </services>

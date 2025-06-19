@@ -16,7 +16,8 @@ jobs:
       - name: Install osc and dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y osc fortune-mod
+          sudo apt-get install -y python3-pip fortune-mod
+          pip3 install --upgrade osc
 
       - name: Configure osc
         run: |
