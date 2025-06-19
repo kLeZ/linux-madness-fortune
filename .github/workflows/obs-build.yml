@@ -19,10 +19,15 @@ jobs:
           sudo apt-get install -y python3-pip fortune-mod
           pip3 install --upgrade osc
 
-      - name: Configure osc
+      - name: Configure osc non interattivo
         run: |
-          osc config
-          osc user ${{ secrets.OBS_USER }}
+          mkdir -p ~/.config/osc
+          echo "[general]" > ~/.config/osc/oscrc
+          echo "apiurl = https://api.opensuse.org" >> ~/.config/osc/oscrc
+          echo "" >> ~/.config/osc/oscrc
+          echo "[https://api.opensuse.org]" >> ~/.config/osc/oscrc
+          echo "user = ${{ secrets.OBS_USER }}" >> ~/.config/osc/oscrc
+          echo "pass = ${{ secrets.OBS_PASS }}" >> ~/.config/osc/oscrc
 
       - name: Checkout OBS package
         run: |
