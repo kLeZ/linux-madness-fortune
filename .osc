@@ -1,8 +1,0 @@
-[general]
-apiurl = https://api.opensuse.org
-debug = 0
-verbose = 1
-
-[https://build.opensuse.org]
-project = home:kLeZ-hAcK
-repository = openSUSE_Tumbleweed
