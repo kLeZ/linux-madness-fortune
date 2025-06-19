@@ -1,0 +1,40 @@
+name: OBS Build Trigger
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Install osc and dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y osc fortune-mod
+
+      - name: Configure osc
+        run: |
+          osc config
+          osc user ${{ secrets.OBS_USER }}
+
+      - name: Checkout OBS package
+        run: |
+          osc checkout home:kLeZ-hAcK/linux-madness-fortune
+
+      - name: Copy repo files to OBS package directory
+        run: |
+          rsync -av --delete ./ linux-madness-fortune/
+
+      - name: Commit and push to OBS
+        env:
+          OBS_PASS: ${{ secrets.OBS_PASS }}
+        run: |
+          cd linux-madness-fortune
+          osc addremove
+          osc commit -m "Build trigger from GitHub Actions"
